@@ -5,7 +5,7 @@ namespace CarRentalSystem.Models
 {
     public class CarRentalSystemDBContext : DbContext
     {
-        public CarRentalSystemDBContext(DbContextOptions<TodoContext> options)
+        public CarRentalSystemDBContext(DbContextOptions<CarRentalSystemDBContext> options)
             : base(options)
         {
         }

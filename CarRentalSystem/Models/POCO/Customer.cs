@@ -1,10 +1,19 @@
-﻿namespace CarRentalSystem.Models.POCO
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace CarRentalSystem.Models.POCO
 {
     public class Customer
     {
-        private int Id;
-        private string Name;
+        public Customer(string Name)
+        {
+            this.Name = Name;
+            this.Id = new Guid();
+        }
 
-		public string Name { get; set; }
+        public readonly Guid Id;
+        public string Name;
 	}
 }

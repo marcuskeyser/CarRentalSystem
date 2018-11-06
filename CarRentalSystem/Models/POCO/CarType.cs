@@ -1,12 +1,21 @@
-﻿namespace CarRentalSystem.Models.POCO
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace CarRentalSystem.Models.POCO
 {
     public class CarType
     {
-        private int Id;
-        private string Name;
-        private string Description;
+        public CarType(string Name, string Description)
+        {
+            this.Name = Name;
+            this.Description = Description;
+            this.Id = new Guid();
+        }
 
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public readonly Guid Id;
+        public string Name;
+        public string Description;
     }
 }

@@ -1,0 +1,73 @@
+﻿Coding Assignment:
+
+Please return your solution to KevinMacDonald@crd.com, in the form of a sharable link to a cloud storage location so that he can share it with the hiring manager.
+
+This assignment should take 2-4 hours.
+
+Design and prototype a car rental system using object-oriented principles. Please focus on delivering the following core features:
+
+o The system should let a customer reserve a car of a given type at a desired date and time for a given number of days
+o The number of cars of each type is limited, but customers should be able to reserve a single rental car for multiple, non-overlapping time frames
+o Provide a Junit test that illustrates the core reservation workflow and demonstrates its correctness
+ 
+Please use C#.NET as the implementation language.
+
+Namespace:
+CarRentalSystem
+
+Objects:
+o Customer
+	int Id
+	string Name
+
+	public int Add(string Name) {return Id}
+	public void DeleteById(int Id)
+	public List<Customer> SelectAll() {return List<Customer>}
+	public Customer SelectById(int Id) {return Customer}
+
+o Car
+	int Id
+	string Make
+	string Model
+	int CarTypeId
+
+	public int Add(string Make, string Model, int CarTypeId ) {return Id}
+	public void DeleteById(int Id)
+	public List<Car> SelectAll() {return List<Car>}
+	public Car SelectById(int Id) {return Car}
+
+o CarType
+	int Id
+	string Name
+	string Description
+
+	public int Add(string Name, string Description) {return Id}
+	public void DeleteById(int Id)
+	public List<CarType> SelectAll() {return List<CarType>}
+	public CarType SelectById(int Id) {return CarType}
+
+o CustomerCarTimeUsage
+	int Id
+	int CarId
+	int CustomerId
+	datetime FromWhen
+	datetime ToWhen
+
+	public into Add(int CarId, int CustomerId, datetime FromWhen, datetime ToWhen)  {return Id}
+	public List<CustomerCarTimeUsage> SelectAll() {return List<CustomerCarTimeUsage>}
+	public CustomerCarTimeUsage SelectById(int Id) {return CustomerCarTimeUsage}
+)
+
+o The system should let a customer reserve a car of a given type at a desired date and time for a given number of days
+Business Rule1:
+... CustomerCarTimeUsage can only be added to IF: A CarID is not already allocated to the same time.
+
+o The number of cars of each type is limited, but customers should be able to reserve a single rental car for multiple, non-overlapping time frames
+Business Rule2:
+... There will be 5 CarTypes
+... Each Type has 1 Car
+
+o Provide a Xunit test that illustrates the core reservation workflow and demonstrates its correctness
+... assumption: since the email for this assignment stipulated JAVA instead of C#, I'm assuming I'll make XUnit tests?
+
+

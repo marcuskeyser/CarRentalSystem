@@ -5,7 +5,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\DBContext.cs" />
+    <Compile Remove="Models\POCO\Car.cs" />
+    <Compile Remove="Models\POCO\CarType.cs" />
+    <Compile Remove="Models\POCO\Customer.cs" />
+    <Compile Remove="Models\POCO\CustomerCarTimeUsage.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Models\DBContext.cs" />
+    <None Include="Models\POCO\Car.cs" />
+    <None Include="Models\POCO\CarType.cs" />
+    <None Include="Models\POCO\Customer.cs" />
+    <None Include="Models\POCO\CustomerCarTimeUsage.cs" />
   </ItemGroup>
 
   <ItemGroup>

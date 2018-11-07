@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using CarRentalSystem.Models;
 
 namespace CarRentalSystem.Controllers
 {
@@ -10,22 +11,40 @@ namespace CarRentalSystem.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        private readonly CarRentalSystemDBContext _context;
+
+        public CustomerController(CarRentalSystemDBContext context)
         {
-            return new string[] { "CustomerController_value1", "CustomerController_value2" };
+            _context = context;
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        [HttpGet]
+        public ActionResult<IEnumerable<Models.POCO.Customer>> Get()
         {
-            return "value";
+            return _context.Customers.ToList();
+        }
+
+        [HttpGet("{id}", Name = "GetCustomer")]
+        public ActionResult<Models.POCO.Customer> Get(int id)
+        {
+            var item = _context.Customers.Find(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            return item;
         }
 
         [HttpPost]
-        public void Post([FromBody] string value)
+        //public void Post([FromBody] string value){}
+        public IActionResult Post(Models.POCO.Customer item)
         {
+            _context.Customers.Add(item);
+            _context.SaveChanges();
+
+            return CreatedAtRoute("GetCustomer", new { id = item.Id }, item);
         }
+
 
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)

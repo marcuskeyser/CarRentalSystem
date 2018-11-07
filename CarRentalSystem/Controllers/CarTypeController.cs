@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using CarRentalSystem.Models;
 
 namespace CarRentalSystem.Controllers
 {
@@ -10,21 +11,38 @@ namespace CarRentalSystem.Controllers
     [ApiController]
     public class CarTypeController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        private readonly CarRentalSystemDBContext _context;
+
+        public CarTypeController(CarRentalSystemDBContext context)
         {
-            return new string[] { "CarTypeController_value1", "CarTypeController_value2" };
+            _context = context;
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        [HttpGet]
+        public ActionResult<IEnumerable<Models.POCO.CarType>> Get()
         {
-            return "value";
+            return _context.CarTypes.ToList();
+        }
+
+        [HttpGet("{id}", Name = "GetCarType")]
+        public ActionResult<Models.POCO.CarType> Get(int id)
+        {
+            var item = _context.CarTypes.Find(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            return item;
         }
 
         [HttpPost]
-        public void Post([FromBody] string value)
+        //public void Post([FromBody] string value){}
+        public IActionResult Post(Models.POCO.CarType item)
         {
+            _context.CarTypes.Add(item);
+            _context.SaveChanges();
+
+            return CreatedAtRoute("GetCarType", new { id = item.Id }, item);
         }
 
         [HttpPut("{id}")]

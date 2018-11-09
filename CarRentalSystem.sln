@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalSystem", "CarRentalSystem\CarRentalSystem.csproj", "{EC59D512-3810-458A-B9BC-68D70528E1A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTest", "XUnitTest\XUnitTest.csproj", "{6F997377-3D87-4EFA-BD48-FC9936EC80FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{EC59D512-3810-458A-B9BC-68D70528E1A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC59D512-3810-458A-B9BC-68D70528E1A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC59D512-3810-458A-B9BC-68D70528E1A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F997377-3D87-4EFA-BD48-FC9936EC80FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F997377-3D87-4EFA-BD48-FC9936EC80FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F997377-3D87-4EFA-BD48-FC9936EC80FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F997377-3D87-4EFA-BD48-FC9936EC80FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

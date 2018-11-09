@@ -12,18 +12,17 @@ o Provide a Junit test that illustrates the core reservation workflow and demons
  
 Please use C#.NET as the implementation language.
 
+
+Solution:
+.NetCore2.1
+
 Namespace:
 CarRentalSystem
 
-Objects:
+Business Objects:
 o Customer
 	int Id
 	string Name
-
-	public int Add(string Name) {return Id}
-	public void DeleteById(int Id)
-	public List<Customer> SelectAll() {return List<Customer>}
-	public Customer SelectById(int Id) {return Customer}
 
 o Car
 	int Id
@@ -31,20 +30,10 @@ o Car
 	string Model
 	int CarTypeId
 
-	public int Add(string Make, string Model, int CarTypeId ) {return Id}
-	public void DeleteById(int Id)
-	public List<Car> SelectAll() {return List<Car>}
-	public Car SelectById(int Id) {return Car}
-
 o CarType
 	int Id
 	string Name
 	string Description
-
-	public int Add(string Name, string Description) {return Id}
-	public void DeleteById(int Id)
-	public List<CarType> SelectAll() {return List<CarType>}
-	public CarType SelectById(int Id) {return CarType}
 
 o CustomerCarTimeUsage
 	int Id
@@ -53,21 +42,75 @@ o CustomerCarTimeUsage
 	datetime FromWhen
 	datetime ToWhen
 
-	public into Add(int CarId, int CustomerId, datetime FromWhen, datetime ToWhen)  {return Id}
-	public List<CustomerCarTimeUsage> SelectAll() {return List<CustomerCarTimeUsage>}
-	public CustomerCarTimeUsage SelectById(int Id) {return CustomerCarTimeUsage}
-)
 
-o The system should let a customer reserve a car of a given type at a desired date and time for a given number of days
 Business Rule1:
 ... CustomerCarTimeUsage can only be added to IF: A CarID is not already allocated to the same time.
 
-o The number of cars of each type is limited, but customers should be able to reserve a single rental car for multiple, non-overlapping time frames
-Business Rule2:
-... There will be 5 CarTypes
-... Each Type has 1 Car
+EndPoints (and test data results):
+... I used Postman to generate these results
 
-o Provide a Xunit test that illustrates the core reservation workflow and demonstrates its correctness
-... assumption: since the email for this assignment stipulated JAVA instead of C#, I'm assuming I'll make XUnit tests?
+[HttpGet]
+http://localhost:4431/api/car
+[{"id":1,"make":"Suzuki","model":"Swift","carTypeId":1},{"id":2,"make":"Hyundai","model":"Accent","carTypeId":1},{"id":3,"make":"Chevrolet","model":"Metro","carTypeId":1},{"id":4,"make":"Ford","model":"Escort","carTypeId":2},{"id":5,"make":"Chevrolet","model":"Cavalier","carTypeId":2},{"id":6,"make":"Daewoo","model":"Leganza","carTypeId":3},{"id":7,"make":"Mazda","model":"626","carTypeId":3},{"id":8,"make":"Nissan","model":"Altima","carTypeId":4},{"id":9,"make":"Pontiac","model":"Grand Am","carTypeId":4},{"id":10,"make":"Ford","model":"Taurus","carTypeId":5},{"id":11,"make":"Buick","model":"Century","carTypeId":5},{"id":12,"make":"Ford","model":"Mustang","carTypeId":6},{"id":13,"make":"Chevrolet","model":"Camaro","carTypeId":6},{"id":14,"make":"Grand","model":"Marquis","carTypeId":7},{"id":15,"make":"Buick","model":"LeSabre","carTypeId":7},{"id":16,"make":"Lincoln","model":"Town Car","carTypeId":8},{"id":17,"make":"Buick","model":"Park Avenue","carTypeId":8},{"id":18,"make":"Ford","model":"Sport Trac","carTypeId":9},{"id":19,"make":"Chevrolet","model":"Blazer","carTypeId":9},{"id":20,"make":"Ford","model":"Explorer","carTypeId":10},{"id":21,"make":"Chrysler","model":"Caravan","carTypeId":11}]
+
+[HttpGet]
+http://localhost:4431/api/cartype
+[{"id":1,"name":"Economy","description":"Suzuki Swift, Hyundai Accent, Chevrolet Metro * 2 adults, 2 children 1 large, 1 small suitcase 33-36mpg"},{"id":2,"name":"Compact","description":"Ford Escort, Chevrolet Cavalier *2 Adults, 2 Children 1 Large, 2 Small Suitcases 30mpg"},{"id":3,"name":"Midsize","description":"Daewoo Leganza, Mazda 626 * 4 Adults, 1 child 1 Large, 2 Small Suitcases 26mpg"},{"id":4,"name":"Standard Size","description":"Nissan Altima, Pontiac Grand Am * 5 Adults 2 Large, 2 Small Suitcase 25mpg"},{"id":5,"name":"Full Size","description":"Ford Taurus, Buick Century * 5 Adults 2 Large, 3 Small Suitcases 23mpg"},{"id":6,"name":"Convertible","description":"Ford Mustang, Chevrolet Camaro * 2 Adults, 2 Children 2 Small Suitcases 21mpg"},{"id":7,"name":"Premium","description":"Grand Marquis, Buick LeSabre * 5 adults, 1 child 3 Large, 2 Small Suitcases 21mpg"},{"id":8,"name":"Luxury","description":"Lincoln Town Car, Buick Park Avenue * 6 Adults 4 Large, 2 Small Suitcases 21mpg"},{"id":9,"name":"SUV","description":"Ford Sport Trac, Chevrolet Blazer * 4 Adults, 1 child 4 Large, 3 Small Suitcases 19mpg"},{"id":10,"name":"SUV-Premium","description":"Ford Explorer * 5 adults 5 large suitcases 19mpg"},{"id":11,"name":"Minivan","description":"Chrysler Caravan * 8 adults 2 Large, 2 Small Suitcases 15mpg"},{"id":12,"name":"Full Size Van","description":"Ford Full Size Van 15 Passengers * 15 adults 2 large suitcases 13mpg"}]
+
+[HttpGet]
+http://localhost:4431/api/customer
+[{"id":1,"name":"Ben"},{"id":2,"name":"Sophie"},{"id":3,"name":"Alexander"},{"id":4,"name":"Joseph"},{"id":5,"name":"Harris"},{"id":6,"name":"Jeffie"},{"id":7,"name":"Desmond"},{"id":8,"name":"Rhonda"},{"id":9,"name":"Pilar"},{"id":10,"name":"Stanton"}]
+
+[HttpGet]
+http://localhost:4431/api/CustomerCarTimeUsage
+[{"make":"Suzuki","model":"Swift","description":"Suzuki Swift, Hyundai Accent, Chevrolet Metro * 2 adults, 2 children 1 large, 1 small suitcase 33-36mpg","type":"Economy","name":"Ben","from":"2020-01-01T12:00:00","to":"2020-01-02T12:00:00"}]
+
+[HttpGet("{id}", Name = "*")]
+http://localhost:4431/api/car/1
+{"id":1,"make":"Suzuki","model":"Swift","carTypeId":1}
+
+[HttpGet("{id}", Name = "*")]
+http://localhost:4431/api/cartype/1
+{"id":1,"name":"Economy","description":"Suzuki Swift, Hyundai Accent, Chevrolet Metro * 2 adults, 2 children 1 large, 1 small suitcase 33-36mpg"}
+
+[HttpGet("{id}", Name = "*")]
+http://localhost:4431/api/customer/1
+{"id":1,"name":"Ben"}
+
+[HttpGet("{id}", Name = "*")]
+http://localhost:4431/api/CustomerCarTimeUsage/1
+{"id":1,"carId":1,"customerId":1,"fromWhen":"2020-01-01T12:00:00","toWhen":"2020-01-02T12:00:00"}
 
 
+[HttpPost]
+http://localhost:4431/api/cartype
+{"id":100,"name":"Sport SUV","description":"Mercedes GLC250, BMW X3 * 2 adults, 2 children 1 large, 1 small suitcase 33-36mpg"}
+
+[HttpPost]
+http://localhost:4431/api/car
+{"id":100,"make":"Porsche","model":"Macan","carTypeId":10}
+
+[HttpPost]
+http://localhost:4431/api/customer
+{"id":100,"name":"Marcus"}
+
+
+Transactional Usage: Marcus reserves a Porsche for 1/1/2020 @12:00 until 1/1/2020 @12:00
+[HttpPost]
+http://localhost:4431/api/CustomerCarTimeUsage
+{"id":100,"carId":100,"customerId":100,"fromWhen":"2020-01-01T12:00:00","toWhen":"2020-01-02T12:00:00"}
+... SUCCESS ...
+
+Transactional Usage: Ben reserves a Hyundai for 1/1/2020 @12:00 until 1/1/2020 @12:00
+[HttpPost]
+http://localhost:4431/api/CustomerCarTimeUsage
+{"id":101,"carId":2,"customerId":1,"fromWhen":"2020-01-01T12:00:00","toWhen":"2020-01-02T12:00:00"}
+... SUCCESS ...
+
+Transactional Usage: Sophie  reserves the same Porsche for 1/1/2020 @17:00 until 1/1/2020 @17:00
+Failure: overlapping times with Marcus's usage of the Porsche
+[HttpPost]
+http://localhost:4431/api/CustomerCarTimeUsage
+{"id":102,"carId":100,"customerId":3,"fromWhen":"2020-01-01T17:00:00","toWhen":"2020-01-02T17:00:00"}
+... FAILURE ...
+Body of Reponse: The Car is not available at the specified date and time

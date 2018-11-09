@@ -52,15 +52,13 @@ namespace CarRentalSystem.Controllers
         }
 
         [HttpPost]
-        //public void Post([FromBody] string value){}
         public IActionResult Post(Models.POCO.CustomerCarTimeUsage item)
         {
             //check to make sure the same car isn't used at the same time
-
             var Conflict = _context.CustomerCarTimeUsages.Where(
                 a => a.CarId == item.CarId 
-                && item.FromWhen >= a.FromWhen && item.FromWhen <= a.ToWhen
-                && item.ToWhen >= a.FromWhen && item.ToWhen <= a.ToWhen
+                && ((item.FromWhen >= a.FromWhen && item.FromWhen <= a.ToWhen)
+                || (item.ToWhen >= a.FromWhen && item.ToWhen <= a.ToWhen))
                 ).FirstOrDefault();
             if (Conflict == null)
             {

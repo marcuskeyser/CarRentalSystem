@@ -36,7 +36,6 @@ namespace CarRentalSystem.Controllers
         }
 
         [HttpPost]
-        //public void Post([FromBody] string value){}
         public IActionResult Post(Models.POCO.CarType item)
         {
             _context.CarTypes.Add(item);

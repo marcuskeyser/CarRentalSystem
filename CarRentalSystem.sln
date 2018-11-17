@@ -3,9 +3,30 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalSystem", "CarRentalSystem\CarRentalSystem.csproj", "{EC59D512-3810-458A-B9BC-68D70528E1A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalSystem", "CarRentalSystem\CarRentalSystem.csproj", "{EC59D512-3810-458A-B9BC-68D70528E1A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTest", "XUnitTest\XUnitTest.csproj", "{6F997377-3D87-4EFA-BD48-FC9936EC80FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTest", "XUnitTest\XUnitTest.csproj", "{6F997377-3D87-4EFA-BD48-FC9936EC80FD}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CarRentalSystemWebUIAngular6", "CarRentalSystemWebUIAngular6\", "{97A37804-41C0-4EA9-BBB7-2E91554AFB7D}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_2907"
+		Debug.AspNetCompiler.PhysicalPath = "CarRentalSystemWebUIAngular6\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_2907\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_2907"
+		Release.AspNetCompiler.PhysicalPath = "CarRentalSystemWebUIAngular6\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_2907\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "2907"
+		SlnRelativePath = "CarRentalSystemWebUIAngular6\"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +42,10 @@ Global
 		{6F997377-3D87-4EFA-BD48-FC9936EC80FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F997377-3D87-4EFA-BD48-FC9936EC80FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F997377-3D87-4EFA-BD48-FC9936EC80FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97A37804-41C0-4EA9-BBB7-2E91554AFB7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97A37804-41C0-4EA9-BBB7-2E91554AFB7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97A37804-41C0-4EA9-BBB7-2E91554AFB7D}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{97A37804-41C0-4EA9-BBB7-2E91554AFB7D}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
